@@ -4,16 +4,28 @@ using UnityEngine;
 
 public class MenuController : BaseController
 {
+    #region STATES
+
     private MenuState menuState;
 
-    [SerializeField] private MenuView menuView;
+    #endregion
+
+    #region SYSTEMS
+
     [SerializeField] private LoadingSystem loadingSystem;
+
+    #endregion
+
+    #region VIEWS
+
+    [SerializeField] private MenuView menuView;
     [SerializeField] private LoadingView loadingView;
 
+    #endregion
 
     protected override void InjectReferences()
     {
-        menuState = new MenuState(menuView, loadingSystem, loadingView);
+        menuState = new MenuState(loadingSystem, menuView, loadingView);
     }
 
     protected override void Start()

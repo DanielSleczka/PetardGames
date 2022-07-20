@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class MenuState : BaseState
 {
-    private MenuView menuView;
     private LoadingSystem loadingSystem;
+    private MenuView menuView;
     private LoadingView loadingView;
 
-    public MenuState(MenuView menuView, LoadingSystem loadingSystem, LoadingView loadingView)
+    public MenuState(LoadingSystem loadingSystem, MenuView menuView, LoadingView loadingView)
     {
-        this.menuView = menuView;
         this.loadingSystem = loadingSystem;
+        this.menuView = menuView;
         this.loadingView = loadingView;
     }
 
