@@ -32,6 +32,11 @@ public class GameController : BaseController
         ChangeState(gameState);
     }
 
+    protected override void Update()
+    {
+        base.Update();
+    }
+
     protected override void OnDestroy()
     {
         base.OnDestroy();
