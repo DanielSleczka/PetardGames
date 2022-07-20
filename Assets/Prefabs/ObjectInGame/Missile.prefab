@@ -96,6 +96,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPoint: {fileID: 404673693646833056, guid: e25e7ba0f48f34f42b4231b23c3881cd, type: 3}
-  explosion: {fileID: 0}
-  meteorPoints: 0
-  enemyShipPoints: 0
+  explosion: {fileID: 6933345049628030071, guid: 458ae5d8d161f444e8207532baaf98b5, type: 3}
