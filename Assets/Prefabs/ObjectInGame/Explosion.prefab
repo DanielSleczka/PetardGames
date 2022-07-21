@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6933345049628030070}
   - component: {fileID: 6933345049628030065}
   - component: {fileID: 6256937298272899644}
+  - component: {fileID: 4404181634542531642}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -601,7 +602,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1500
+    maxNumParticles: 1200
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -747,7 +748,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.4
       mode: 0
       spread: 0
       speed:
@@ -3793,7 +3794,7 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 2
     inside: 1
     outside: 0
@@ -3801,7 +3802,8 @@ ParticleSystem:
     exit: 0
     colliderQueryMode: 0
     radiusScale: 1
-    primitives: []
+    primitives:
+    - {fileID: 0}
   SubModule:
     serializedVersion: 2
     enabled: 0
@@ -4818,3 +4820,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb63cb159df7bb04da74a88aad411841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionCollider: {fileID: 4404181634542531642}
+--- !u!58 &4404181634542531642
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933345049628030064}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
