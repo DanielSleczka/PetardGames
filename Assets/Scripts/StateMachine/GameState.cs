@@ -30,6 +30,7 @@ public class GameState : BaseState
     {
         base.InitializeState();
         missileController.InitializeController();
+        enemyMissileController.InitializeController();
     }
 
 
@@ -37,6 +38,7 @@ public class GameState : BaseState
     {
         base.UpdateState();
         missileController.UpdateController();
+        enemyMissileController.UpdateController();
 
     }
     public override void DestroyState()
