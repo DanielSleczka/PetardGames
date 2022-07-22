@@ -9,7 +9,6 @@ public class Missile : MonoBehaviour
     [SerializeField] private Transform targetPoint;
     private Transform currentTarget;
     [SerializeField] private Transform explosion;
-    private Transform currentExplosion;
     private static Vector2 targetPosition;
 
     private float missileSpeed;
@@ -20,6 +19,7 @@ public class Missile : MonoBehaviour
     #region Delegates
 
     private UnityAction onMissileLaunch;
+
 
     #endregion
 
@@ -62,18 +62,30 @@ public class Missile : MonoBehaviour
             float distanceToTarget = Vector3.Distance(currentTarget.position, transform.position);
             if (distanceToTarget <= 0.02f)
             {
-                MissileExplosion();
-                Destroy(currentTarget.gameObject);
-                Destroy(gameObject);
+                DestroyCurrentObjects();
             }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnemyMissile"))
+        {
+            DestroyCurrentObjects();
+        }
+    }
+
+    public void DestroyCurrentObjects()
+    {
+        MissileExplosion();
+        Destroy(currentTarget.gameObject);
+        Destroy(gameObject);
     }
 
     public void MissileExplosion()
     {
         Transform newExplosion = Instantiate(explosion);
         newExplosion.transform.position = transform.position;
-        currentExplosion = newExplosion;
     }
 
     public void SetMissileSpeed(float missileSpeed)
@@ -85,5 +97,4 @@ public class Missile : MonoBehaviour
     {
         onMissileLaunch += callback;
     }
-
 }
