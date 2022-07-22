@@ -9,6 +9,7 @@ public class GameState : BaseState
 
     private MissileController missileController;
     private EnemyMissileController enemyMissileController;
+    private ScoreSystem scoreSystem;
 
     #endregion
 
@@ -17,10 +18,11 @@ public class GameState : BaseState
     private GameView gameView;
     #endregion
 
-    public GameState(MissileController missileController, EnemyMissileController enemyMissileController, GameView gameView)
+    public GameState(MissileController missileController, EnemyMissileController enemyMissileController, ScoreSystem scoreSystem, GameView gameView)
     {
         this.missileController = missileController;
         this.enemyMissileController = enemyMissileController;
+        this.scoreSystem = scoreSystem;
         this.gameView = gameView;
     }
 
@@ -31,6 +33,7 @@ public class GameState : BaseState
         base.InitializeState();
         missileController.InitializeController();
         enemyMissileController.InitializeController();
+        scoreSystem.InitializeSystem();
     }
 
 

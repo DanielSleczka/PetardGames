@@ -24,16 +24,18 @@ public class EnemyMissileController : MonoBehaviour
     [SerializeField] private float maxTimeToRespawn;
     private float timeToRespawn;
 
+    [SerializeField] private ScoreSystem scoreSystem;
+
     public void InitializeController()
     {
         timeToRespawn = Random.Range(minTimeToRespawn, maxTimeToRespawn);
-        StartCoroutine(RespawnNewMeteor(timeToRespawn));
+        StartCoroutine(RespawnNewMissile(timeToRespawn));
 
     }
 
     public void UpdateController()
     {
-        RemoveAllNullMeteorsFromList();
+        RemoveAllNullMissilesFromList();
 
         for (int i = currentMissiles.Count - 1; i >= 0; i--)
         {
@@ -41,29 +43,35 @@ public class EnemyMissileController : MonoBehaviour
         }
     }
 
-    public void RespawnMeteors()
+    public void RespawnMissiles()
     {
         xPositionToRespawn = Random.Range(xMinPositionToRespawn, xMaxPositionToRespawn);
         zRotate = Random.Range(zMinRotate, zMaxRotate);
 
-        EnemyMissile newMeteor = Instantiate(enemyMissile);
-        newMeteor.transform.position = new Vector3(xPositionToRespawn, 9f, 0);
-        newMeteor.transform.Rotate(0, 0, zRotate);
-        currentMissiles.Add(newMeteor);
+        EnemyMissile newEnemyMissile = Instantiate(enemyMissile);
+        newEnemyMissile.transform.position = new Vector3(xPositionToRespawn, 9f, 0);
+        newEnemyMissile.transform.Rotate(0, 0, zRotate);
+        newEnemyMissile.OnMissileDestroyObject_AddListener(AddPoints);
+        currentMissiles.Add(newEnemyMissile);
         timeToRespawn = Random.Range(minTimeToRespawn, maxTimeToRespawn);
-        StartCoroutine(RespawnNewMeteor(timeToRespawn));
+        StartCoroutine(RespawnNewMissile(timeToRespawn));
     }
-    private IEnumerator RespawnNewMeteor(float delay)
+    private IEnumerator RespawnNewMissile(float delay)
     {
         yield return new WaitForSeconds(delay);
-        RespawnMeteors();
+        RespawnMissiles();
     }
 
-    public void RemoveAllNullMeteorsFromList()
+    public void RemoveAllNullMissilesFromList()
     {
         if (currentMissiles.Count > 0)
         {
-            currentMissiles.RemoveAll(Meteor => Meteor == null);
+            currentMissiles.RemoveAll(EnemyMissile => EnemyMissile == null);
         }
+    }
+
+    public void AddPoints(float pointsValue)
+    {
+        scoreSystem.AddPoints(pointsValue);
     }
 }

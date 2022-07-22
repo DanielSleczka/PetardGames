@@ -7,11 +7,11 @@ public class GameController : BaseController
 
     #endregion
 
-    #region CONTROLLERS
+    #region CONTROLLERS & SYSTEMS
 
     [SerializeField] private MissileController missileController;
     [SerializeField] private EnemyMissileController enemyMissileController;
-
+    [SerializeField] private ScoreSystem scoreSystem;
     #endregion
 
     #region VIEWS
@@ -23,7 +23,7 @@ public class GameController : BaseController
 
     protected override void InjectReferences()
     {
-        gameState = new GameState(missileController, enemyMissileController, gameView);
+        gameState = new GameState(missileController, enemyMissileController, scoreSystem, gameView);
     }
 
     protected override void Start()
