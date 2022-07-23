@@ -22,4 +22,9 @@ public class ScoreSystem : MonoBehaviour
         currentPoints += pointsValue;
         gameView.UpdatePoints(currentPoints);
     }
+
+    public float GetCurrentPoints()
+    {
+        return currentPoints;
+    }
 }

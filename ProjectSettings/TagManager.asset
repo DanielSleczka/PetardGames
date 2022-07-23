@@ -9,6 +9,7 @@ TagManager:
   - MissileCommand
   - Ground
   - Explosion
+  - FatMan
   layers:
   - Default
   - TransparentFX
