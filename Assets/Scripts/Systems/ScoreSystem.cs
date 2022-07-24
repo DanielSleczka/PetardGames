@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class ScoreSystem : MonoBehaviour
 {
+    [Header("Controllers")]
+    [SerializeField] private EnemyMissileController enemyMissileController;
 
     [Header("Views")]
     [SerializeField] private GameView gameView;
 
     [Header("Points")]
+    [SerializeField] private float gameSpeedBoostPoints;
     private float currentPoints;
 
     public void InitializeSystem()
@@ -16,6 +19,7 @@ public class ScoreSystem : MonoBehaviour
         currentPoints = 0f;
         AddPoints(currentPoints);
     }
+
 
     public void AddPoints(float pointsValue)
     {
@@ -26,5 +30,15 @@ public class ScoreSystem : MonoBehaviour
     public float GetCurrentPoints()
     {
         return currentPoints;
+    }
+
+    public void BoostGameSpeed()
+    {
+        // In this moment method is update in GameState
+        if (currentPoints >= gameSpeedBoostPoints)
+        {
+            enemyMissileController.ChangeGameSpeed();
+            gameSpeedBoostPoints += gameSpeedBoostPoints;
+        }
     }
 }

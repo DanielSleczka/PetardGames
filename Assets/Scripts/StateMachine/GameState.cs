@@ -26,8 +26,6 @@ public class GameState : BaseState
         this.gameView = gameView;
     }
 
-
-
     public override void InitializeState()
     {
         base.InitializeState();
@@ -36,14 +34,14 @@ public class GameState : BaseState
         scoreSystem.InitializeSystem();
     }
 
-
     public override void UpdateState()
     {
         base.UpdateState();
         missileController.UpdateController();
         enemyMissileController.UpdateController();
-
+        scoreSystem.BoostGameSpeed();
     }
+
     public override void DestroyState()
     {
         base.DestroyState();
