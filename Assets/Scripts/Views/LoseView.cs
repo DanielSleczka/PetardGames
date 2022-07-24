@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,13 +9,19 @@ public class LoseView : BaseView
     [SerializeField] private Button restartButton;
     [SerializeField] private Button exitButton;
 
-    [SerializeField] private TextMeshProUGUI lastGamePointsValue;
+    [SerializeField] private TextMeshProUGUI scoreValue;
 
 
-    public void ShowLastPoints(float value)
+    public void ShowScoreValue(float value)
     {
-        lastGamePointsValue.text = $"{value}";
+        scoreValue.text = $"{value}";
     }
+
+    public void ChangeTextValueScale(Vector2 scale)
+    {
+        scoreValue.transform.DOScale(scale, .2f).OnComplete(() => scoreValue.transform.DOScale(Vector2.one, .2f));
+    }
+
 
     public void OnRestartGameButtonClicked_AddListener(UnityAction listener)
     {

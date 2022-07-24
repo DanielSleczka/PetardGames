@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LoseState : BaseState
@@ -21,7 +19,8 @@ public class LoseState : BaseState
     {
         base.InitializeState();
         loseView.ShowView();
-        loseView.ShowLastPoints(scoreSystem.GetCurrentPoints());
+        scoreSystem.CountPoints();
+
         loseView.OnRestartGameButtonClicked_AddListener(ResetLevel);
         loseView.OnExitButtonClicked_AddListener(Application.Quit);
     }
