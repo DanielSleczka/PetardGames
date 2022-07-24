@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 6256937298272899644, guid: 458ae5d8d161f444e8207532baaf98b5, type: 3}
-  pointsValue: 150
+  pointsValue: 15
 --- !u!58 &-2716208002263727753
 CircleCollider2D:
   m_ObjectHideFlags: 0
