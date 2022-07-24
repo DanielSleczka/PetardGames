@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -69,7 +67,7 @@ public class MissileController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyMissile") || collision.CompareTag("FatMan"))
+        if (collision.CompareTag("EnemyMissile"))
         {
             onGameOver.Invoke();
         }

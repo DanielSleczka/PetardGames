@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,10 +9,14 @@ public class Missile : MonoBehaviour
     [SerializeField] private Transform explosion;
     private static Vector2 targetPosition;
 
+    #region MissileValue
+
     private float missileSpeed;
 
     private bool isShooting;
     private bool canShoot;
+
+    #endregion
 
     #region Delegates
 
