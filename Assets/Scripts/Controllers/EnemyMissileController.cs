@@ -23,19 +23,19 @@ public class EnemyMissileController : MonoBehaviour
     [SerializeField] private float minTimeToRespawn;
     [SerializeField] private float maxTimeToRespawn;
     private float timeToRespawn;
+    private float currentTime;
 
     [SerializeField] private ScoreSystem scoreSystem;
 
     public void InitializeController()
     {
-        timeToRespawn = Random.Range(minTimeToRespawn, maxTimeToRespawn);
-        StartCoroutine(RespawnNewMissile(timeToRespawn));
-
+        SetTimeToRespawn();
     }
 
     public void UpdateController()
     {
         RemoveAllNullMissilesFromList();
+        CheckRespawnCondition();
 
         // Moving all current missiles
         for (int i = currentMissiles.Count - 1; i >= 0; i--)
@@ -58,15 +58,22 @@ public class EnemyMissileController : MonoBehaviour
 
         // Add to current missiles list
         currentMissiles.Add(newEnemyMissile);
-
-        // Set new time to respawn
-        timeToRespawn = Random.Range(minTimeToRespawn, maxTimeToRespawn);
-        StartCoroutine(RespawnNewMissile(timeToRespawn));
     }
-    private IEnumerator RespawnNewMissile(float delay)
+
+    public void SetTimeToRespawn()
     {
-        yield return new WaitForSeconds(delay);
-        RespawnMissiles();
+        timeToRespawn = Random.Range(minTimeToRespawn, maxTimeToRespawn);
+        currentTime = 0f;
+    }
+
+    public void CheckRespawnCondition()
+    {
+        if (currentTime >= timeToRespawn)
+        {
+            RespawnMissiles();
+            SetTimeToRespawn();
+        }
+        currentTime += Time.deltaTime;
     }
 
     public void RemoveAllNullMissilesFromList()
@@ -80,5 +87,18 @@ public class EnemyMissileController : MonoBehaviour
     public void AddPoints(float pointsValue)
     {
         scoreSystem.AddPoints(pointsValue);
+    }
+
+    public void ChangeGameSpeed()
+    {
+        missileSpeed += 0.3f;
+        if (minTimeToRespawn > 0)
+        {
+            minTimeToRespawn -= 0.25f;
+        }
+        if (maxTimeToRespawn > 0)
+        {
+            maxTimeToRespawn -= 0.25f;
+        }
     }
 }
